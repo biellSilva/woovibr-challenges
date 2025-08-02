@@ -1,11 +1,6 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  SquareDashedBottomCode,
-  Upload
-} from 'lucide-react'
+import { ChevronLeft, ChevronRight, Download, Upload } from 'lucide-react'
 import React from 'react'
+import { NodesMenu } from './nodes-menu'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -22,8 +17,7 @@ export const AppContextMenu = ({ children }: { children: React.ReactNode }) => {
       <ContextMenuContent className="flex flex-col gap-y-1">
         <ContextMenuGroup>
           <ContextMenuItem>
-            <SquareDashedBottomCode />
-            <span>Components</span>
+            <NodesMenu />
           </ContextMenuItem>
         </ContextMenuGroup>
 
