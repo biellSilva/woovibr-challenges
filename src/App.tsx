@@ -2,7 +2,12 @@ import {
   addEdge,
   applyEdgeChanges,
   applyNodeChanges,
-  ReactFlow
+  ReactFlow,
+  type Edge,
+  type Node,
+  type OnConnect,
+  type OnEdgesChange,
+  type OnNodesChange
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { useCallback, useState } from 'react'
@@ -17,20 +22,20 @@ const initialNodes = [
 const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }]
 
 export default function App() {
-  const [nodes, setNodes] = useState(initialNodes)
-  const [edges, setEdges] = useState(initialEdges)
+  const [nodes, setNodes] = useState<Node[]>(initialNodes)
+  const [edges, setEdges] = useState<Edge[]>(initialEdges)
 
-  const onNodesChange = useCallback(
+  const onNodesChange: OnNodesChange = useCallback(
     (changes) =>
       setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
     []
   )
-  const onEdgesChange = useCallback(
+  const onEdgesChange: OnEdgesChange = useCallback(
     (changes) =>
       setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
     []
   )
-  const onConnect = useCallback(
+  const onConnect: OnConnect = useCallback(
     (params) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
     []
   )
