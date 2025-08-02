@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  SquareDashedBottomCode,
+  Upload
+} from 'lucide-react'
+import { Separator } from './components/ui/separator'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div
+      className="w-screen h-screen bg-background text-muted-foreground"
+      style={{
+        backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)',
+        backgroundSize: '15px 15px'
+      }}
+    >
+      <div className="absolute bottom-0 mb-2 left-1/2 -translate-x-1/2 flex gap-2 items-center rounded-md justify-center w-fit p-2 bg-card text-foreground">
+        <SquareDashedBottomCode className="size-5" />
+        <Separator orientation="vertical" className="!h-5" />
+        <ChevronLeft className="size-5" />
+        <ChevronRight className="size-5" />
+        <Separator orientation="vertical" className="!h-5" />
+        <Download className="size-5" />
+        <Upload className="size-5" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
-
-export default App
