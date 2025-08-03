@@ -4,6 +4,7 @@ import TitleContext from '@/context/title-context'
 import { Download, Upload } from 'lucide-react'
 import { useContext } from 'react'
 import { Button } from './ui/button'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
 
 export const DownloadUpload = () => {
   const { title, setTitle } = useContext(TitleContext)
@@ -48,24 +49,40 @@ export const DownloadUpload = () => {
     document.body.removeChild(a)
   }
 
+  const buttons = [
+    {
+      icon: Download,
+      label: 'Download',
+      action: handleDownload
+    },
+    {
+      icon: Upload,
+      label: 'Upload',
+      action: handleUpload
+    }
+  ]
+
   return (
     <div className="flex items-center gap-2">
-      <Button
-        variant="ghost"
-        size="icon"
-        className="cursor-pointer"
-        onClick={handleDownload}
-      >
-        <Download />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="cursor-pointer"
-        onClick={handleUpload}
-      >
-        <Upload />
-      </Button>
+      {buttons.map((button) => (
+        <HoverCard key={button.label} openDelay={100} closeDelay={100}>
+          <HoverCardTrigger>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="cursor-pointer"
+              onClick={button.action}
+            >
+              <button.icon />
+            </Button>
+          </HoverCardTrigger>
+          <HoverCardContent className="w-fit h-fit py-1 px-2">
+            <span className="text-xs text-muted-foreground font-medium">
+              {button.label}
+            </span>
+          </HoverCardContent>
+        </HoverCard>
+      ))}
     </div>
   )
 }
