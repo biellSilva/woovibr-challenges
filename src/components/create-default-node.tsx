@@ -1,15 +1,18 @@
+import MousePosContext from '@/context/mouse-pos-context'
 import NodesContext from '@/context/nodes-context'
-import type { Node } from '@xyflow/react'
-import { SquareDashedBottomCode } from 'lucide-react'
+import { useReactFlow, type Node } from '@xyflow/react'
+import { Square } from 'lucide-react'
 import { useContext } from 'react'
 
-export const NodesMenu = () => {
+export const CreateDefaultNode = () => {
   const { nodes, setNodes } = useContext(NodesContext)
+  const { position } = useContext(MousePosContext)
+  const { screenToFlowPosition } = useReactFlow()
 
   function addNode() {
     const node: Node = {
       id: `n${nodes.length + 1}`,
-      position: { x: 0, y: 0 },
+      position: screenToFlowPosition(position),
       data: { label: `Node ${nodes.length + 1}` }
     }
     setNodes((prevNodes) => [...prevNodes, node])
@@ -17,8 +20,8 @@ export const NodesMenu = () => {
   return (
     <>
       <div onClick={addNode} className="flex items-center gap-2 cursor-pointer">
-        <SquareDashedBottomCode />
-        <span>Components</span>
+        <Square />
+        <span>Default Node</span>
       </div>
     </>
   )

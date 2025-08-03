@@ -1,4 +1,5 @@
 import EdgesContext from '@/context/edges-context'
+import MousePosContext from '@/context/mouse-pos-context'
 import NodesContext from '@/context/nodes-context'
 import {
   addEdge,
@@ -15,6 +16,7 @@ import { useCallback, useContext } from 'react'
 export const Flow = () => {
   const { nodes, setNodes } = useContext(NodesContext)
   const { edges, setEdges } = useContext(EdgesContext)
+  const { setPosition } = useContext(MousePosContext)
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -34,10 +36,13 @@ export const Flow = () => {
     <ReactFlow
       nodes={nodes}
       edges={edges}
+      fitView
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-      fitView
+      onPaneMouseMove={(e) => {
+        setPosition({ x: e.clientX, y: e.clientY })
+      }}
     >
       <Background />
     </ReactFlow>
