@@ -1,5 +1,5 @@
 import React from 'react'
-import { CreateDefaultNode } from './create-default-node'
+import { CreateConditionalNode } from './create-conditional-node'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -13,7 +13,7 @@ export const AppContextMenu = ({ children }: { children: React.ReactNode }) => {
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>
-          <CreateDefaultNode />
+          <CreateConditionalNode />
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
