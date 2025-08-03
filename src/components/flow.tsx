@@ -1,3 +1,4 @@
+import { nodeTypes } from '@/constants/flow'
 import EdgesContext from '@/context/edges-context'
 import MousePosContext from '@/context/mouse-pos-context'
 import NodesContext from '@/context/nodes-context'
@@ -36,6 +37,7 @@ export const Flow = () => {
     <ReactFlow
       nodes={nodes}
       edges={edges}
+      nodeTypes={nodeTypes}
       fitView
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
