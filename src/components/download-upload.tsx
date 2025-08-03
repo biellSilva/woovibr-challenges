@@ -1,6 +1,5 @@
-import EdgesContext from '@/context/edges-context'
-import NodesContext from '@/context/nodes-context'
 import TitleContext from '@/context/title-context'
+import { useReactFlow } from '@xyflow/react'
 import { Download, Upload } from 'lucide-react'
 import { useContext } from 'react'
 import { Button } from './ui/button'
@@ -8,8 +7,8 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
 
 export const DownloadUpload = () => {
   const { title, setTitle } = useContext(TitleContext)
-  const { nodes, setNodes } = useContext(NodesContext)
-  const { edges, setEdges } = useContext(EdgesContext)
+
+  const { toObject, setEdges, setNodes, setViewport } = useReactFlow()
 
   const handleUpload = () => {
     const input = document.createElement('input')
@@ -23,8 +22,9 @@ export const DownloadUpload = () => {
         reader.onload = (e) => {
           const data = JSON.parse(e.target?.result as string)
           setTitle(data.title)
-          setNodes(data.nodes)
-          setEdges(data.edges)
+          setNodes(data.nodes || [])
+          setEdges(data.edges || [])
+          setViewport(data.viewport || { x: 0, y: 0, zoom: 1 })
         }
         reader.readAsText(file)
       }
@@ -35,8 +35,7 @@ export const DownloadUpload = () => {
   const handleDownload = () => {
     const data = {
       title,
-      nodes,
-      edges
+      ...toObject()
     }
     const json = JSON.stringify(data, null, 2)
     const blob = new Blob([json], { type: 'application/json' })
