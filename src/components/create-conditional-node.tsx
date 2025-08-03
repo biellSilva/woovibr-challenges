@@ -4,7 +4,7 @@ import { useReactFlow, type Node } from '@xyflow/react'
 import { Square } from 'lucide-react'
 import { useContext } from 'react'
 
-export const CreateDefaultNode = () => {
+export const CreateConditionalNode = () => {
   const { nodes, setNodes } = useContext(NodesContext)
   const { position } = useContext(MousePosContext)
   const { screenToFlowPosition } = useReactFlow()
@@ -13,7 +13,8 @@ export const CreateDefaultNode = () => {
     const node: Node = {
       id: `n${nodes.length + 1}`,
       position: screenToFlowPosition(position),
-      data: { label: `Node ${nodes.length + 1}` }
+      data: { label: `Node ${nodes.length + 1}` },
+      type: 'conditionalNode'
     }
     setNodes((prevNodes) => [...prevNodes, node])
   }
@@ -21,7 +22,7 @@ export const CreateDefaultNode = () => {
     <>
       <div onClick={addNode} className="flex items-center gap-2 cursor-pointer">
         <Square />
-        <span>Default Node</span>
+        <span>Conditional Node</span>
       </div>
     </>
   )
