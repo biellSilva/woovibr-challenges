@@ -9,7 +9,12 @@ interface ContextProps {
 const NodesContext = createContext<ContextProps>({} as ContextProps)
 
 const initialNodes = [
-  { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Start' } }
+  {
+    id: 'n1',
+    position: { x: 0, y: 0 },
+    data: { label: 'Start' },
+    type: 'startNode'
+  }
 ]
 
 export const NodesProvider: React.FC<{ children: React.ReactNode }> = ({
