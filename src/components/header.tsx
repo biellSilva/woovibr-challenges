@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight, Download, Upload } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { DownloadUpload } from './download-upload'
 import { FlowTitle } from './flow-title'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
@@ -10,14 +11,8 @@ export const Header = () => {
 
       <Separator orientation="vertical" className="!h-[70%]" />
 
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" className="cursor-pointer">
-          <Download />
-        </Button>
-        <Button variant="ghost" size="icon" className="cursor-pointer">
-          <Upload />
-        </Button>
-      </div>
+      <DownloadUpload />
+
       <Separator orientation="vertical" className="!h-[70%]" />
       <div className="flex items-center gap-2">
         <Button variant="ghost" size="icon" className="cursor-pointer">
