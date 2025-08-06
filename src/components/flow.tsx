@@ -34,6 +34,17 @@ export const Flow = () => {
     [setEdges]
   )
 
+  const onPaneMouseMove = useCallback(() => {
+    let timeoutId: NodeJS.Timeout | null = null
+
+    return (event: React.MouseEvent) => {
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        setPosition({ x: event.clientX, y: event.clientY })
+      }, 50)
+    }
+  }, [setPosition])()
+
   return (
     <ReactFlow
       nodes={nodes}
@@ -43,9 +54,7 @@ export const Flow = () => {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-      onPaneMouseMove={(e) => {
-        setPosition({ x: e.clientX, y: e.clientY })
-      }}
+      onPaneMouseMove={onPaneMouseMove}
     >
       <Background />
       <Controls />
