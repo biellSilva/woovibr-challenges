@@ -1,3 +1,4 @@
+import { nodeTypes } from '@/constants/flow'
 import EdgesContext from '@/context/edges-context'
 import MousePosContext from '@/context/mouse-pos-context'
 import NodesContext from '@/context/nodes-context'
@@ -6,6 +7,7 @@ import {
   applyEdgeChanges,
   applyNodeChanges,
   Background,
+  Controls,
   ReactFlow,
   type OnConnect,
   type OnEdgesChange,
@@ -32,19 +34,30 @@ export const Flow = () => {
     [setEdges]
   )
 
+  const onPaneMouseMove = useCallback(() => {
+    let timeoutId: NodeJS.Timeout | null = null
+
+    return (event: React.MouseEvent) => {
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        setPosition({ x: event.clientX, y: event.clientY })
+      }, 50)
+    }
+  }, [setPosition])()
+
   return (
     <ReactFlow
       nodes={nodes}
       edges={edges}
+      nodeTypes={nodeTypes}
       fitView
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
-      onPaneMouseMove={(e) => {
-        setPosition({ x: e.clientX, y: e.clientY })
-      }}
+      onPaneMouseMove={onPaneMouseMove}
     >
       <Background />
+      <Controls />
     </ReactFlow>
   )
 }

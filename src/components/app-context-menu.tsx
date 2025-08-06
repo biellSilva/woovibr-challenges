@@ -1,5 +1,7 @@
+import NodesContext from '@/context/nodes-context'
+
+import { Square } from 'lucide-react'
 import React from 'react'
-import { CreateDefaultNode } from './create-default-node'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -7,14 +9,37 @@ import {
   ContextMenuTrigger
 } from './ui/context-menu'
 
+const CustomNodes = [
+  {
+    label: 'Conditional',
+    icon: <Square />,
+    type: 'conditionalNode',
+    data: { label: 'Conditional', content: '' }
+  },
+  {
+    label: 'Webhook',
+    icon: <Square />,
+    type: 'webhookNode',
+    data: { label: 'Webhook', url: '', method: 'POST', headers: '', body: '' }
+  }
+]
+
 export const AppContextMenu = ({ children }: { children: React.ReactNode }) => {
+  const { addNode } = React.useContext(NodesContext)
+
   return (
     <ContextMenu>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuItem>
-          <CreateDefaultNode />
-        </ContextMenuItem>
+        {CustomNodes.map((node) => (
+          <ContextMenuItem
+            key={node.type}
+            onClick={() => addNode({ data: node.data, type: node.type })}
+          >
+            {node.icon}
+            {node.label}
+          </ContextMenuItem>
+        ))}
       </ContextMenuContent>
     </ContextMenu>
   )
