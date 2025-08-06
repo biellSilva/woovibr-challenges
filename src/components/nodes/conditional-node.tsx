@@ -16,7 +16,7 @@ export const ConditionalNode = ({ id }: ConditionalNodeProps) => {
   }
 
   return (
-    <div className="bg-white min-w-18 w-fit h-fit text-start p-2 rounded-sm shadow-md">
+    <div className="bg-white w-fit h-fit text-start p-2 rounded-sm shadow-md">
       <div className="flex flex-col w-fit">
         <span className="text-muted-foreground text-xs font-semibold mb-1">
           {typeof node.data.label === 'string' ? node.data.label : ''}
