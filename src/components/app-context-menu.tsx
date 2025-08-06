@@ -11,10 +11,10 @@ import {
 
 const CustomNodes = [
   {
-    label: 'Conditional Node',
+    label: 'Conditional',
     icon: <Square />,
     type: 'conditionalNode',
-    data: { label: 'Conditional Node', content: '' }
+    data: { label: 'Conditional', content: '' }
   }
 ]
 
