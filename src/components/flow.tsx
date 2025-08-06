@@ -7,6 +7,7 @@ import {
   applyEdgeChanges,
   applyNodeChanges,
   Background,
+  Controls,
   ReactFlow,
   type OnConnect,
   type OnEdgesChange,
@@ -47,6 +48,7 @@ export const Flow = () => {
       }}
     >
       <Background />
+      <Controls />
     </ReactFlow>
   )
 }
