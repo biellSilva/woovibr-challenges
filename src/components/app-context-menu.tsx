@@ -15,6 +15,12 @@ const CustomNodes = [
     icon: <Square />,
     type: 'conditionalNode',
     data: { label: 'Conditional', content: '' }
+  },
+  {
+    label: 'Webhook',
+    icon: <Square />,
+    type: 'webhookNode',
+    data: { label: 'Webhook', url: '', method: 'POST', headers: '', body: '' }
   }
 ]
 
