@@ -11,21 +11,21 @@ import { TitleProvider } from './context/title-context'
 
 export default function App() {
   return (
-    <ReactFlowProvider>
-      <NodesProvider>
-        <EdgesProvider>
-          <TitleProvider>
-            <MousePosProvider>
+    <MousePosProvider>
+      <ReactFlowProvider>
+        <NodesProvider>
+          <EdgesProvider>
+            <TitleProvider>
               <AppContextMenu>
                 <main className="w-screen h-screen bg-background text-muted-foreground">
                   <Header />
                   <Flow />
                 </main>
               </AppContextMenu>
-            </MousePosProvider>
-          </TitleProvider>
-        </EdgesProvider>
-      </NodesProvider>
-    </ReactFlowProvider>
+            </TitleProvider>
+          </EdgesProvider>
+        </NodesProvider>
+      </ReactFlowProvider>
+    </MousePosProvider>
   )
 }
