@@ -25,7 +25,7 @@ export const WebhookNode = ({ id }: WebhookNodeProps) => {
     <div className="bg-white w-fit text-start p-2 rounded-sm shadow-md">
       <div className="flex flex-col w-fit gap-1">
         <span className="text-muted-foreground text-xs font-semibold">
-          Webhook
+          {typeof node.data.label === 'string' ? node.data.label : ''}
         </span>
         <Input
           value={typeof node.data.url === 'string' ? node.data.url : ''}
