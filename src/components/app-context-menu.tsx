@@ -11,13 +11,11 @@ import {
 
 const CustomNodes = [
   {
-    label: 'Conditional',
     icon: <Square />,
     type: 'conditionalNode',
     data: { label: 'Conditional', content: '' }
   },
   {
-    label: 'Webhook',
     icon: <Square />,
     type: 'webhookNode',
     data: { label: 'Webhook', url: '', method: 'POST', headers: '', body: '' }
@@ -37,7 +35,7 @@ export const AppContextMenu = ({ children }: { children: React.ReactNode }) => {
             onClick={() => addNode({ data: node.data, type: node.type })}
           >
             {node.icon}
-            {node.label}
+            {node.data.label}
           </ContextMenuItem>
         ))}
       </ContextMenuContent>
